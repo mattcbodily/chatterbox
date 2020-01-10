@@ -3,6 +3,7 @@ const express = require('express'),
       massive = require('massive'),
       session = require('express-session'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
+      authCtrl = require('./controllers/authController'),
       app = express();
 
 app.use(express.json())
@@ -18,6 +19,12 @@ massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     console.log('db connected')
 })
+
+//auth endpoints
+app.post('/api/register', authCtrl.register);
+app.post('/api/login', authCtrl.login);
+app.post('/api/logout', authCtrl.logout);
+app.get('/api/member', authCtrl.getMember);
 
 const port = SERVER_PORT;
 app.listen(port, () => console.log(`Chatterbox at ${port}`));
