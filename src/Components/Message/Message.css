@@ -1,0 +1,7 @@
+.message {
+    height: calc(100vh - 100px);
+    width: calc(100% - 400px);
+    position: fixed;
+    top: 100px;
+    right: 0px;
+}

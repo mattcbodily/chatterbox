@@ -1,0 +1,8 @@
+.groups {
+    height: calc(100vh - 100px);
+    width: 400px;
+    border-right: 1px solid gray;
+    position: fixed;
+    top: 100px;
+    left: 0px;
+}

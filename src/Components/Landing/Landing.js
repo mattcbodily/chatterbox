@@ -32,10 +32,12 @@ export default (props) => {
             </section>
             <div className='landing-divider'></div>
             <section className='auth-form'>
-                <input 
+                {registerView
+                ? <input 
                     value={username}
                     maxLength='20'
                     onChange={(e) => setUsername(e.target.value)}/>
+                : null}
                 <input 
                     value={email}
                     maxLength='150'
