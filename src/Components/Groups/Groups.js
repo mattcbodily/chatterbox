@@ -1,12 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Message from '../Message/Message';
 import './Groups.css';
 
 export default (props) => {
+    const [groups, setGroups] = useState([]);
     const [createGroupView, setCreateGroupView] = useState(false);
     const [groupName, setGroupName] = useState('');
     const [groupDescription, setGroupDescription] = useState('');
     const [privateGroup, setPrivateGroup] = useState(false);
+
+    useEffect(() => {
+        if(props.member.member_id){
+            getGroups(props.member.member_id)
+        }
+    }, [props.member.member_id])
+
+    const getGroups = (id) => {
+        axios.get(`/api/groups/${id}`)
+        .then(res => setGroups(res.data))
+        .catch(err => console.log(err))
+    }
 
     const createGroup = () => {
         let newGroup = {
@@ -24,12 +38,17 @@ export default (props) => {
         .catch(err => console.log(err));
     }
 
+    const mappedGroups = groups.map((group, i) => {
+        return (
+            <p key={i}>{group.group_name}</p>
+        )
+    })
     return (
         <div className='groups'>
             {!createGroupView
             ? (<>
                 <button onClick={() => setCreateGroupView(true)}>Create Group</button>
-                {/* groups will go here */}
+                {mappedGroups}
                </>)
             : (<>
                 <input
@@ -47,6 +66,7 @@ export default (props) => {
                 <button onClick={createGroup}>Create</button>
                 <button onClick={() => setCreateGroupView(false)}>Cancel</button>
                </>)}
+            <Message />
         </div>
     )
 };
