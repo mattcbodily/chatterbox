@@ -28,7 +28,7 @@ app.post('/api/logout', authCtrl.logout);
 app.get('/api/member', authCtrl.getMember);
 
 //group endpoints
-app.get('/api/group/:id', groupCtrl.getGroups);
+app.get('/api/groups/:id', groupCtrl.getGroups);
 app.post('/api/group', groupCtrl.createGroup);
 
 const port = SERVER_PORT;

@@ -1,12 +1,28 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import './Groups.css';
 
-export default () => {
-    const [groups, setGroups] = useState([]);
+export default (props) => {
     const [createGroupView, setCreateGroupView] = useState(false);
     const [groupName, setGroupName] = useState('');
     const [groupDescription, setGroupDescription] = useState('');
     const [privateGroup, setPrivateGroup] = useState(false);
+
+    const createGroup = () => {
+        let newGroup = {
+            id: props.member.member_id,
+            groupName,
+            groupDescription,
+            privateGroup
+        };
+
+        axios.post('/api/group', newGroup)
+        .then(res => {
+            props.getGroupsFn(props.member.member_id);
+            setCreateGroupView(false);
+        })
+        .catch(err => console.log(err));
+    }
 
     return (
         <div className='groups'>
@@ -28,7 +44,7 @@ export default () => {
                     type='checkbox'
                     value={privateGroup}
                     onChange={(e) => setPrivateGroup(e.target.value)}/>
-                <button>Create</button>
+                <button onClick={createGroup}>Create</button>
                 <button onClick={() => setCreateGroupView(false)}>Cancel</button>
                </>)}
         </div>
