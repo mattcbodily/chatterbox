@@ -1,0 +1,1 @@
+select * from chat_group where member_id = ${id};
