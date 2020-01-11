@@ -1,10 +1,11 @@
 import React from 'react';
 import './Header.css';
 
-export default () => {
+export default (props) => {
     return (
         <header className='header'>
-            Header Component
+                <img src={props.member.avatar} alt='member avatar' className='avatar-image'/>
+                <span>Welcome, {props.member.username}</span>
         </header>
     )
 }

@@ -16,7 +16,7 @@ export default () => {
 
     return (
         <div>
-            <Header />
+            <Header member={member}/>
             <Groups />
             <Message />
         </div>
