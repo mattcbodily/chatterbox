@@ -39,9 +39,9 @@ io.on('connection', socket => {
     console.log('member connected')
     socket.on('join room', async data => {
         const {group} = data,
-              db = req.app.get('db');
+              db = app.get('db');
         
-        console.log("Room joined", room);
+        console.log("Room joined", group);
 
         let room = await db.message.get_message_group({id: group});
         let messages = await db.message.message_history({id: group});
