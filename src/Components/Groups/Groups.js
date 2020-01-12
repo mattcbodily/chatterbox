@@ -5,6 +5,7 @@ import './Groups.css';
 
 export default (props) => {
     const [groups, setGroups] = useState([]);
+    const [selectedGroup, setSelectedGroup] = useState({});
     const [createGroupView, setCreateGroupView] = useState(false);
     const [groupName, setGroupName] = useState('');
     const [groupDescription, setGroupDescription] = useState('');
@@ -40,7 +41,7 @@ export default (props) => {
 
     const mappedGroups = groups.map((group, i) => {
         return (
-            <p key={i}>{group.group_name}</p>
+            <p key={i} onClick={() => setSelectedGroup(group.group_id)}>{group.group_name}</p>
         )
     })
     return (
@@ -66,7 +67,7 @@ export default (props) => {
                 <button onClick={createGroup}>Create</button>
                 <button onClick={() => setCreateGroupView(false)}>Cancel</button>
                </>)}
-            <Message />
+            <Message member={props.member} selectedGroup={selectedGroup}/>
         </div>
     )
 };

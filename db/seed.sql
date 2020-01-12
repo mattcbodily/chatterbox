@@ -22,5 +22,6 @@ create table if not exists group_member_join (
 create table if not exists messages (
 	message_id serial primary key,
 	group_id int references chat_group(group_id),
-	sender int references member(member_id)
+	sender int references member(member_id),
+    message text
 );

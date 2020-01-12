@@ -2,10 +2,12 @@ require('dotenv').config();
 const express = require('express'),
       massive = require('massive'),
       session = require('express-session'),
+      socket = require('socket.io'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       authCtrl = require('./controllers/authController'),
       groupCtrl = require('./controllers/groupController'),
-      app = express();
+      app = express()
+      io = socket(app.listen(SERVER_PORT, () => console.log(`Chatterbox at ${SERVER_PORT}`)));
 
 app.use(express.json())
 
@@ -31,5 +33,30 @@ app.get('/api/member', authCtrl.getMember);
 app.get('/api/groups/:id', groupCtrl.getGroups);
 app.post('/api/group', groupCtrl.createGroup);
 
-const port = SERVER_PORT;
-app.listen(port, () => console.log(`Chatterbox at ${port}`));
+
+//sockets
+io.on('connection', socket => {
+    console.log('member connected')
+    socket.on('join room', async data => {
+        const {group} = data,
+              db = req.app.get('db');
+        
+        console.log("Room joined", room);
+
+        let room = await db.message.get_message_group({id: group});
+        let messages = await db.message.message_history({id: group});
+        socket.join(room);
+        io.to(room).emit('room joined', messages);
+    });
+    socket.on("message sent", async data => {
+        const { group, sender, message } = data;
+        const db = app.get("db");
+        await db.message.create_message({ id: group, sender, message });
+        let messages = await db.message.message_history({ id: group });
+        io.to(data.group).emit("message dispatched", messages);
+      });
+    
+      socket.on("disconnect", () => {
+        console.log("User Disconnected");
+      });
+});
