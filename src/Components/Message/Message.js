@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import io from 'socket.io-client';
 import './Message.css';
+const socket = io('http://localhost:3333')
 
 export default (props) => {
     const [messages, setMessages] = useState([]);
-    const [socket] = useState(io());
 
     useEffect(() => {
         if(typeof props.selectedGroup === 'number'){
