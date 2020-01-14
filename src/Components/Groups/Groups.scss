@@ -1,12 +1,13 @@
+@import '../../variables';
+
 .groups {
-    height: calc(100vh - 75px);
-    width: 400px;
-    border-right: 1px solid gray;
+    height: 100vh;
+    width: 250px;
     position: fixed;
-    top: 75px;
     left: 0px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     padding: 10px;
+    background-color: $accent-color;
 }

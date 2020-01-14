@@ -1,15 +1,16 @@
+@import '../../variables';
+
 .message {
-    height: calc(100vh - 75px);
+    height: 99vh;
     width: calc(100% - 250px);
+    box-sizing: border-box;
     position: fixed;
-    top: 75px;
     right: 0px;
 }
 
 .message-input {
     width: 90%;
     margin: 0px;
-    border-top: 1px solid black;
     outline: none;
     position: absolute;
     bottom: 0px;

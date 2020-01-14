@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import io from 'socket.io-client';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import Header from '../Header/Header';
 import Message from '../Message/Message';
-import './Groups.css';
+import './Groups.scss';
 
 class Groups extends Component {
     constructor(props){
@@ -91,7 +92,7 @@ class Groups extends Component {
 
     toggleCreateView = () => {
         this.setState({
-            setCreateGroupView: !this.setCreateGroupView
+            createGroupView: !this.setCreateGroupView
         })
     }
 
@@ -110,6 +111,7 @@ class Groups extends Component {
         })
         return (
             <div className='groups'>
+                <Header />
                 {!this.state.createGroupView
                 ? (<>
                     <button onClick={this.toggleCreateView}>Create Group</button>

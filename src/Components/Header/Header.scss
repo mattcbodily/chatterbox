@@ -1,0 +1,17 @@
+@import '../../variables';
+
+.header {
+    height: 75px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    background-color: $accent-color;
+}
+
+.avatar-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
