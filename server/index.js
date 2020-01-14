@@ -53,7 +53,7 @@ io.on('connection', socket => {
         const db = app.get("db");
         await db.message.create_message({ id: group, sender, message });
         let messages = await db.message.message_history({ id: group });
-        io.to(data.group).emit("message dispatched", messages);
+        socket.emit("message dispatched", messages);
       });
     
       socket.on("disconnect", () => {

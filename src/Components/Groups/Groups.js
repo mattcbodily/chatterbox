@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import io from 'socket.io-client';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import Message from '../Message/Message';
 import './Groups.css';
@@ -10,26 +11,41 @@ class Groups extends Component {
         this.state = {
             groups: [],
             selectedGroup: {},
+            messages: [],
             createGroupView: false,
             groupName: '',
             groupDescription: '',
-            privateGroup: false
+            privateGroup: false,
+            chatJoined: false
         }
     }
 
     componentDidMount(){
         this.getGroups(this.props.member.member_id);
+        this.socket = io('http://localhost:3333');
+        this.socket.on('room joined', data => {
+            this.joinSuccess(data)
+          })
+        this.socket.on('message dispatched', data => {
+            console.log('hit', data)
+            this.updateMessages(data);
+        })
+    }
+
+    componentWillUnmount(){
+        this.socket.disconnect()
     }
 
     getGroups = (id) => {
         axios.get(`/api/groups/${id}`)
-        .then(res => setGroups(res.data))
+        .then(res => this.setState({groups: res.data}))
         .catch(err => console.log(err))
     }
 
     createGroup = () => {
+        const {groupName, groupDescription, privateGroup} = this.state;
         let newGroup = {
-            id: props.member.member_id,
+            id: this.props.member.member_id,
             groupName,
             groupDescription,
             privateGroup
@@ -38,9 +54,45 @@ class Groups extends Component {
         axios.post('/api/group', newGroup)
         .then(res => {
             this.props.getGroupsFn(this.props.member.member_id);
-            // setCreateGroupView(false);
+            this.toggleCreateView()
         })
         .catch(err => console.log(err));
+    }
+
+    joinRoom = async(id) => {
+        await this.setState({
+            selectedGroup: id
+        })
+        this.socket.emit('join room', {
+            group: this.state.selectedGroup
+        })
+    }
+
+    joinSuccess(messages) {
+        this.setState({
+          chatJoined: true,
+          messages
+        })
+    }
+
+    sendMessage = (message) => {
+        this.socket.emit('message sent', {
+          message,
+          sender: this.props.member.member_id,
+          group: this.state.selectedGroup
+        })
+    }
+
+    updateMessages(messages) {
+        this.setState({
+          messages
+        })
+    }
+
+    toggleCreateView = () => {
+        this.setState({
+            setCreateGroupView: !this.setCreateGroupView
+        })
     }
 
     handleInputs = (e) => {
@@ -50,17 +102,17 @@ class Groups extends Component {
     }
 
     render(){
-        mappedGroups = this.state.groups.map((group, i) => {
+        console.log(this.state.messages)
+        const mappedGroups = this.state.groups.map((group, i) => {
             return (
-                // need to set selected group here
-                <p key={i}>{group.group_name}</p>
+                <p key={i} onClick={() => this.joinRoom(group.group_id)}>{group.group_name}</p>
             )
         })
         return (
             <div className='groups'>
-                {!createGroupView
+                {!this.state.createGroupView
                 ? (<>
-                    <button onClick={() => setCreateGroupView(true)}>Create Group</button>
+                    <button onClick={this.toggleCreateView}>Create Group</button>
                     {mappedGroups}
                 </>)
                 : (<>
@@ -81,10 +133,20 @@ class Groups extends Component {
                         onChange={(e) => this.handleInputs(e)}/>
                     <button onClick={this.createGroup}>Create</button>
                     {/* need to toggle createGroupView here */}
-                    <button>Cancel</button>
+                    <button onClick={this.toggleCreateView}>Cancel</button>
                 </>)}
-                <Message member={this.props.member} selectedGroup={this.state.selectedGroup}/>
+                <Message 
+                    member={this.props.member} 
+                    selectedGroup={this.state.selectedGroup}
+                    messages={this.state.messages}
+                    sendMessageFn={this.sendMessage}/>
             </div>
         )
     }
 };
+
+const mapStateToProps = (reduxState) => {
+    return reduxState
+}
+
+export default connect(mapStateToProps)(Groups);

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {getMember} from '../../redux/memberReducer';
 import './Landing.css';
 
-export default (props) => {
+const Landing = (props) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,6 +14,7 @@ export default (props) => {
 
     const login = () => {
         axios.post('/api/login', {email, password}).then(res => {
+            props.getMember(res.data)
             props.history.push('/dashboard')
         }).catch(err => console.log(err));
     }
@@ -19,6 +22,7 @@ export default (props) => {
     const register = () => {
         if(password === verPassword){
             axios.post('/api/register', {username, email, password, admin}).then(res => {
+                props.getMember(res.data)
                 props.history.push('/dashboard')
             }).catch(err => console.log(err));
         }
@@ -70,3 +74,5 @@ export default (props) => {
         </div>
     )
 }
+
+export default connect(null, {getMember})(Landing);
