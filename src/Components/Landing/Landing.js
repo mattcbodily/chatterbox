@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getMember} from '../../redux/memberReducer';
-import './Landing.css';
+import './Landing.scss';
 
 const Landing = (props) => {
     const [username, setUsername] = useState('');
