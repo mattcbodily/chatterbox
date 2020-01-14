@@ -92,7 +92,7 @@ class Groups extends Component {
 
     toggleCreateView = () => {
         this.setState({
-            createGroupView: !this.setCreateGroupView
+            createGroupView: !this.state.createGroupView
         })
     }
 
@@ -134,7 +134,6 @@ class Groups extends Component {
                         name='privateGroup'
                         onChange={(e) => this.handleInputs(e)}/>
                     <button onClick={this.createGroup}>Create</button>
-                    {/* need to toggle createGroupView here */}
                     <button onClick={this.toggleCreateView}>Cancel</button>
                 </>)}
                 <Message 

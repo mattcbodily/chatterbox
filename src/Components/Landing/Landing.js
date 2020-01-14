@@ -31,6 +31,8 @@ const Landing = (props) => {
     return(
         <div className='landing'>
             <section>
+                <h1>Welcome to Chatterbox</h1>
+                <h3>The ultimate tool for your business</h3> 
                 {/* intro to chatterbox here, carousel different features? */}
                 <img width='350px' src='https://cdna.artstation.com/p/assets/images/images/009/583/862/large/esther-gaona-0208-a-i-gaonavmonzerrat-calamardoguapo-v1.jpg?1519791896' alt='filler'/>
             </section>
@@ -58,17 +60,21 @@ const Landing = (props) => {
                         value={verPassword}
                         maxLength='25'
                         onChange={(e) => setVerPassword(e.target.value)}/>
-                    <input 
-                        type='checkbox' 
-                        value={admin}
-                        onChange={(e) => setAdmin(e.target.value)}/>
+                    <section>
+                        <input
+                            id='admin-check' 
+                            type='checkbox' 
+                            value={admin}
+                            onChange={(e) => setAdmin(e.target.value)}/>
+                        <span>I am an administrator</span>
+                    </section>
                     <button onClick={register}>Register</button>
-                    <p>Have an account? <span onClick={() => setRegisterView(false)}>Login here.</span></p>
+                    <p>Have an account? <span className='auth-link' onClick={() => setRegisterView(false)}>Login here.</span></p>
                    </>
                 )
                 : (<>
                     <button onClick={login}>Login</button>
-                    <p>Don't have an account? <span onClick={() => setRegisterView(true)}>Register here.</span></p>
+                    <p>Don't have an account? <span className='auth-link' onClick={() => setRegisterView(true)}>Register here.</span></p>
                    </>)}
             </section>
         </div>
