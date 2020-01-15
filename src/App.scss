@@ -1,7 +1,9 @@
 @import './variables';
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 .App {
     text-align: center;
+    font-family: 'Lato', sans-serif;
 }
 
 h1 {
@@ -35,6 +37,7 @@ button {
     height: 30px;
     width: 250px;
     font-size: 15px;
+    font-weight: 500;
     background-color: white;
     border-radius: 5px;
     border: none;

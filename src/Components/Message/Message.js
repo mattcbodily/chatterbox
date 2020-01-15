@@ -9,8 +9,19 @@ export default (props) => {
         setMessageText('');
     }
 
-    const mappedMessages = props.messages.map((message, i) => 
-        <p key={i}>{message.message}</p>
+    console.log(props.messages)
+
+    const mappedMessages = props.messages.map((message, i) =>
+        <section key={i} className='message-info-container'>
+            <img 
+                src={message.avatar} 
+                alt={message.username}
+                className='sender-avatar'/>
+            <section>
+                <p>{message.username}</p>
+                <p className='message-text'>{message.message}</p>
+            </section>
+        </section>
     )
     return (
         <div className='message'>

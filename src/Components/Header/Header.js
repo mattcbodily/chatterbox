@@ -15,7 +15,7 @@ const Header = (props) => {
         <header className='header'>
                 <img src={props.member.avatar} alt='member avatar' className='avatar-image'/>
                 <span>{props.member.username}</span>
-                {/* <button onClick={logout}>Logout</button> */}
+                <button onClick={logout}>Logout</button>
         </header>
     )
 }
