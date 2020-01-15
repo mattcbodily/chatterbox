@@ -6,12 +6,14 @@
     margin-top: 10px;
     padding-left: 10px;
     display: flex;
+    justify-content: center;
     align-items: center;
     background-color: $accent-color;
 }
 
 .avatar-image {
-    height: 60px;
-    width: 60px;
+    height: 45px;
+    width: 45px;
+    margin-right: 8px;
     border-radius: 50%;
 }

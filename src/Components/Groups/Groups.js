@@ -119,8 +119,9 @@ class Groups extends Component {
                     <section onClick={this.toggleCreateView} className='group-selection'>+ Create Group</section>
                     {mappedGroups}
                 </>)
-                : (<>
+                : (<section className='group-creation'>
                     <input
+                        className='group-creation-input'
                         value={this.state.groupName}
                         name='groupName'
                         maxLength='20'
@@ -135,9 +136,9 @@ class Groups extends Component {
                         value={this.state.privateGroup}
                         name='privateGroup'
                         onChange={(e) => this.handleInputs(e)}/>
-                    <button onClick={this.createGroup}>Create</button>
-                    <button onClick={this.toggleCreateView}>Cancel</button>
-                </>)}
+                    <button onClick={this.createGroup} className='group-button'>Create</button>
+                    <button onClick={this.toggleCreateView} className='group-button'>Cancel</button>
+                </section>)}
                 <Message 
                     member={this.props.member} 
                     selectedGroup={this.state.selectedGroup}
