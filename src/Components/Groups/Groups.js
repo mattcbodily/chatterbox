@@ -106,7 +106,9 @@ class Groups extends Component {
         console.log(this.state.messages)
         const mappedGroups = this.state.groups.map((group, i) => {
             return (
-                <p key={i} onClick={() => this.joinRoom(group.group_id)}>{group.group_name}</p>
+                <section key={i} onClick={() => this.joinRoom(group.group_id)} className='group-selection'>
+                    <p>{group.group_name}</p>
+                </section>
             )
         })
         return (
@@ -114,7 +116,7 @@ class Groups extends Component {
                 <Header />
                 {!this.state.createGroupView
                 ? (<>
-                    <button onClick={this.toggleCreateView}>Create Group</button>
+                    <section onClick={this.toggleCreateView} className='group-selection'>+ Create Group</section>
                     {mappedGroups}
                 </>)
                 : (<>

@@ -2,11 +2,24 @@
 
 .groups {
     height: 100vh;
-    width: 250px;
+    width: 200px;
     position: fixed;
     left: 0px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     background-color: $accent-color;
+    color: white;
+}
+
+.group-selection {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-selection:hover {
+    background-color: white;
+    color: black;
 }

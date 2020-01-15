@@ -1,13 +1,21 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import './Header.scss';
 
 const Header = (props) => {
-    console.log(props)
+    const logout = () => {
+        axios.post('/api/logout').then(res => {
+            props.history.push('/')
+        })
+    }
+
     return (
         <header className='header'>
                 <img src={props.member.avatar} alt='member avatar' className='avatar-image'/>
-                <span>Welcome, {props.member.username}</span>
+                <span>{props.member.username}</span>
+                <button onClick={logout}>Logout</button>
         </header>
     )
 }
@@ -16,4 +24,4 @@ const mapStateToProps = (reduxState) => {
     return reduxState
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
