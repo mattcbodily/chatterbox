@@ -18,7 +18,7 @@ export default (props) => {
                 alt={message.username}
                 className='sender-avatar'/>
             <section>
-                <p>{message.username}</p>
+                <p className='message-username'>{message.username}</p>
                 <p className='message-text'>{message.message}</p>
             </section>
         </section>
