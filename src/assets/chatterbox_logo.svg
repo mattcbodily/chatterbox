@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="126.375 134.825 276.297 239.713" xmlns="http://www.w3.org/2000/svg">
+  <path style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 5px;" d="M 179.882 138.361 L 399.072 137.996 L 398.289 344.829 L 180.311 344.587 L 179.882 138.361 Z"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 247.421 153.093"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" d="M 400.495 280.553"/>
+  <path style="stroke-width: 5px; stroke: rgb(0, 0, 0); fill: rgb(82, 92, 98);" d="M 128.992 165.99 L 348.182 165.625 L 347.399 372.458 L 129.421 372.216 L 128.992 165.99 Z"/>
+  <path style="stroke: rgb(0, 0, 0); stroke-width: 5px; fill: rgb(82, 92, 98);" d="M 400.1 138.593 L 348.581 164.827 L 347.153 372.436 L 399.802 346.665 L 400.1 138.593 Z"/>
+  <path style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 5px;" d="M 179.505 139.003 L 129.51 166.303 L 180.258 165.125 L 179.505 139.003 Z"/>
+  <rect x="182.136" y="220.83" width="114.295" height="76.298" rx="17.598" ry="17.598" style="stroke: rgb(0, 0, 0); stroke-width: 5px; fill: rgb(2, 152, 82);"/>
+  <path style="stroke: rgb(0, 0, 0); stroke-width: 5px; fill: rgb(2, 152, 82);" d="M 247.328 298.109 L 270.739 323.738 L 272.487 297.949" transform="matrix(1, 0, 0, 1, 7.231035456688197, 0.14909351457089315)"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 5px;" d="M 208.608 242.161 L 269.229 242.188"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 5px;" d="M 208.299 276.596 L 268.92 276.623"/>
+  <path style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-width: 5px;" d="M 202.819 259.819 L 271.446 259.846"/>
+  <path style="stroke: rgb(0, 0, 0); stroke-width: 5px; fill: rgb(82, 92, 98);" d="M 179.811 137.624 L 287.09 136.931 L 238.319 165.2 L 132.552 166.008 L 179.811 137.624 Z"/>
+  <path style="stroke: rgb(0, 0, 0); stroke-width: 5px; fill: rgb(82, 92, 98);" d="M 283.257 137.242 L 399.149 137.727 L 348.574 164.732 L 233.417 165.596 L 283.257 137.242 Z"/>
+</svg>

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getMember} from '../../redux/memberReducer';
+import logo from '../../assets/chatterbox_logo.svg';
 import './Landing.scss';
 
 const Landing = (props) => {
@@ -32,9 +33,9 @@ const Landing = (props) => {
         <div className='landing'>
             <section>
                 <h1>Welcome to Chatterbox</h1>
-                <h3>The ultimate tool for your business</h3> 
+                <h2>The ultimate tool for your business</h2> 
                 {/* intro to chatterbox here, carousel different features? */}
-                <img width='350px' src='https://cdna.artstation.com/p/assets/images/images/009/583/862/large/esther-gaona-0208-a-i-gaonavmonzerrat-calamardoguapo-v1.jpg?1519791896' alt='filler'/>
+                <img className='landing-logo' src={logo} alt='Chatterbox icon'/>
             </section>
             <div className='landing-divider'></div>
             <section className='auth-form'>
