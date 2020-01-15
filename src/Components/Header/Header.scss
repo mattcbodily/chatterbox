@@ -3,12 +3,12 @@
 .header {
     height: 75px;
     box-sizing: border-box;
-    margin-top: 10px;
-    padding-left: 10px;
+    margin-top: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: $accent-color;
+    -webkit-app-region: drag;
 }
 
 .avatar-image {

@@ -6,6 +6,7 @@
     justify-content: space-evenly;
     align-items: center;
     background-color: $main-color;
+    -webkit-app-region: drag;
 }
 
 .landing-divider {
