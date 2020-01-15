@@ -140,7 +140,8 @@ class Groups extends Component {
                     <button onClick={this.toggleCreateView} className='group-button'>Cancel</button>
                 </section>)}
                 <Message 
-                    member={this.props.member} 
+                    member={this.props.member}
+                    groups={this.state.groups} 
                     selectedGroup={this.state.selectedGroup}
                     messages={this.state.messages}
                     sendMessageFn={this.sendMessage}/>

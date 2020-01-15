@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import GroupOptions from '../GroupOptions/GroupOptions';
 import './Message.scss';
 
 export default (props) => {
@@ -8,8 +9,6 @@ export default (props) => {
         props.sendMessageFn(messageText);
         setMessageText('');
     }
-
-    console.log(props.messages)
 
     const mappedMessages = props.messages.map((message, i) =>
         <section key={i} className='message-info-container'>
@@ -25,6 +24,8 @@ export default (props) => {
     )
     return (
         <div className='message'>
+            {/* reconsider where GroupOptions is rendering from */}
+            <GroupOptions />
             {mappedMessages}
             <input value={messageText} className='message-input' onChange={(e) => setMessageText(e.target.value)}/>
             <button className='send-message-button' onClick={sendMessage}>Send</button>
