@@ -17,3 +17,20 @@
     margin-right: 8px;
     border-radius: 50%;
 }
+
+.menu-icon {
+    margin-left: 5px;
+}
+
+.dropdown {
+    height: 200px;
+    width: 175px;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: $main-color;
+    position: fixed;
+    top: 90px;
+    color: black;
+    cursor: default;
+}
