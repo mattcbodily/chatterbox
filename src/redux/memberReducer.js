@@ -1,5 +1,6 @@
 const initialState = {
-    member: {}
+    member: {},
+    groups: {}
 }
 
 const GET_MEMBER = 'GET_MEMBER';

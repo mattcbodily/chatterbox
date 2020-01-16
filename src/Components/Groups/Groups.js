@@ -11,7 +11,7 @@ class Groups extends Component {
         super(props);
         this.state = {
             groups: [],
-            selectedGroup: {},
+            selectedGroup: 0,
             messages: [],
             createGroupView: false,
             groupName: '',
@@ -103,7 +103,6 @@ class Groups extends Component {
     }
 
     render(){
-        console.log(this.state.messages)
         const mappedGroups = this.state.groups.map((group, i) => {
             return (
                 <section key={i} onClick={() => this.joinRoom(group.group_id)} className='group-selection'>

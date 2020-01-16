@@ -25,7 +25,7 @@ export default (props) => {
     return (
         <div className='message'>
             {/* reconsider where GroupOptions is rendering from */}
-            <GroupOptions />
+            <GroupOptions groups={props.groups} selectedGroup={props.selectedGroup}/>
             {mappedMessages}
             <input value={messageText} className='message-input' onChange={(e) => setMessageText(e.target.value)}/>
             <button className='send-message-button' onClick={sendMessage}>Send</button>
