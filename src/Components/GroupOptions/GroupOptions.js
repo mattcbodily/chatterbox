@@ -7,6 +7,11 @@ export default (props) => {
     const groupInfo = groups.find(group => group.group_id === selectedGroup);
     return (
         <div className='group-options'>
-            {groupInfo ? <span>{groupInfo.group_name}</span> : null}
+            {groupInfo 
+            ?(<section>
+                <span className='group-options-name'>{groupInfo.group_name}</span> 
+                <button className='group-options-button'>Task Board</button>
+              </section>) 
+            : null}
         </div>
 )};

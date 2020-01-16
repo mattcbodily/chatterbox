@@ -1,6 +1,34 @@
 @import '../../variables';
 
 .group-options {
-    height: 40px;
+    height: 50px;
+    width: calc(100% - 200px);
     border-bottom: 1px solid gray;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background-color: $main-color;
+    display: flex;
+    align-items: center;
+}
+
+.group-options-name {
+    margin: 0px 10px;
+}
+
+.group-options-button {
+    height: 25px;
+    width: 100px;
+    background-color: $hover-color;
+    color: white;
+}
+
+.group-options-button:hover {
+    background-color: white;
+    color: black;
+}
+
+.group-options-button:active {
+    background-color: $hover-color;
+    color: white;
 }

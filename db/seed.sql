@@ -10,7 +10,8 @@ create table if not exists chat_group (
     group_id serial primary key,
     group_name varchar(20) not null,
     group_description text,
-    private_group boolean not null
+    private_group boolean not null,
+    taskboard boolean not null
 );
 
 create table if not exists group_member_join (
