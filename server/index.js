@@ -6,6 +6,7 @@ const express = require('express'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       authCtrl = require('./controllers/authController'),
       groupCtrl = require('./controllers/groupController'),
+      taskCtrl = require('./controllers/taskController'),
       app = express()
       io = socket(app.listen(SERVER_PORT, () => console.log(`Chatterbox at ${SERVER_PORT}`)));
 
@@ -32,6 +33,10 @@ app.get('/api/member', authCtrl.getMember);
 //group endpoints
 app.get('/api/groups/:id', groupCtrl.getGroups);
 app.post('/api/group', groupCtrl.createGroup);
+
+//task endpoints
+app.get('/api/columns/:id', taskCtrl.getColumns);
+app.get('/api/tasks/:id', taskCtrl.getTasks);
 
 
 //sockets

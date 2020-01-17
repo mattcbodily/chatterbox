@@ -1,0 +1,1 @@
+select * from task_board_columns where group_id = ${id};

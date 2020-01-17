@@ -26,3 +26,24 @@ create table if not exists messages (
 	sender int references member(member_id),
     message text
 );
+
+create table if not exists task_board (
+    task_board_id serial primary key,
+    group_id int references chat_group(group_id)
+);
+
+create table if not exists task_board_columns (
+    column_id serial primary key,
+    task_board_id int references task_board(task_board_id) not null,
+    column_order int not null,
+    column_name varchar(30)
+);
+
+create table if not exists task_board_tasks (
+    task_id serial primary key,
+    column_id int references task_board_columns(column_id) not null,
+    member_id int references member(member_id),
+    task_order int not null,
+    task varchar(50),
+    priority varchar(20)
+);
