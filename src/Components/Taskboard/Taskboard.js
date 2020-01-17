@@ -1,29 +1,35 @@
-import React, {useState, useEffect} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {DragDropContext} from 'react-beautiful-dnd';
 import axios from 'axios';
 import Columns from './Columns';
 import './Taskboard.scss';
 
-const Taskboard = (props) => {
-    const [columns, setColumns] = useState([])
+class Taskboard extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            columns: []
+        }
+    }
     
-    useEffect(() => {
-        axios.get(`/api/columns/${props.selectedGroup}`)
-        .then(res => setColumns(res.data))
+    componentDidMount(){
+        axios.get(`/api/columns/${this.props.selectedGroup}`)
+        .then(res => this.setState({columns: res.data}))
         .catch(err => console.log(err));
-    }, [])
+    }
 
-    console.log(columns)
-    const onDragEnd = result => {
+    onDragEnd = result => {
         //axios request to update the order of the table
     }
 
-    return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            {columns.map(columnData => <Columns key={columnData.column_id} column={columnData} />)}
-        </DragDropContext>
-    )
+    render(){
+        return (
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                {this.state.columns.map(columnData => <Columns key={columnData.column_id} column={columnData}/>)}
+            </DragDropContext>
+        )   
+    }
 }
 
 const mapStateToProps = reduxState => reduxState;
