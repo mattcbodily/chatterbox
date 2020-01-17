@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import io from 'socket.io-client';
 import {connect} from 'react-redux';
+import {getGroups, setSelectedGroup} from '../../redux/memberReducer';
 import axios from 'axios';
 import Header from '../Header/Header';
 import Message from '../Message/Message';
@@ -10,7 +11,6 @@ class Groups extends Component {
     constructor(props){
         super(props);
         this.state = {
-            groups: [],
             selectedGroup: 0,
             messages: [],
             createGroupView: false,
@@ -28,7 +28,6 @@ class Groups extends Component {
             this.joinSuccess(data)
           })
         this.socket.on('message dispatched', data => {
-            console.log('hit', data)
             this.updateMessages(data);
         })
     }
@@ -39,7 +38,7 @@ class Groups extends Component {
 
     getGroups = (id) => {
         axios.get(`/api/groups/${id}`)
-        .then(res => this.setState({groups: res.data}))
+        .then(res => this.props.getGroups(res.data))
         .catch(err => console.log(err))
     }
 
@@ -61,11 +60,9 @@ class Groups extends Component {
     }
 
     joinRoom = async(id) => {
-        await this.setState({
-            selectedGroup: id
-        })
+        await this.props.setSelectedGroup(id)
         this.socket.emit('join room', {
-            group: this.state.selectedGroup
+            group: this.props.selectedGroup
         })
     }
 
@@ -103,7 +100,7 @@ class Groups extends Component {
     }
 
     render(){
-        const mappedGroups = this.state.groups.map((group, i) => {
+        const mappedGroups = this.props.groups.map((group, i) => {
             return (
                 <section key={i} onClick={() => this.joinRoom(group.group_id)} className='group-selection'>
                     <p>{group.group_name}</p>
@@ -140,8 +137,8 @@ class Groups extends Component {
                 </section>)}
                 <Message 
                     member={this.props.member}
-                    groups={this.state.groups} 
-                    selectedGroup={this.state.selectedGroup}
+                    groups={this.props.groups} 
+                    selectedGroup={this.props.selectedGroup}
                     messages={this.state.messages}
                     sendMessageFn={this.sendMessage}/>
             </div>
@@ -153,4 +150,4 @@ const mapStateToProps = (reduxState) => {
     return reduxState
 }
 
-export default connect(mapStateToProps)(Groups);
+export default connect(mapStateToProps, {getGroups, setSelectedGroup})(Groups);
