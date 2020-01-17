@@ -7,6 +7,7 @@
     position: fixed;
     top: 0px;
     right: 0px;
+    z-index: 2;
     background-color: $main-color;
     display: flex;
     align-items: center;
@@ -14,6 +15,7 @@
 
 .group-options-name {
     margin: 0px 10px;
+    color: black;
 }
 
 .group-options-button {

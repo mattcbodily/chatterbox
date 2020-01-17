@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import GroupOptions from '../GroupOptions/GroupOptions';
 import './Message.scss';
 
-export default (props) => {
+const Message = (props) => {
     const [messageText, setMessageText] = useState('');
 
     const sendMessage = () => {
@@ -24,11 +25,13 @@ export default (props) => {
     )
     return (
         <div className='message'>
-            {/* reconsider where GroupOptions is rendering from */}
-            <GroupOptions groups={props.groups} selectedGroup={props.selectedGroup}/>
             {mappedMessages}
             <input value={messageText} className='message-input' onChange={(e) => setMessageText(e.target.value)}/>
             <button className='send-message-button' onClick={sendMessage}>Send</button>
         </div>
     )
 }
+
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(Message);

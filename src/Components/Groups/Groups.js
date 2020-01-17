@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getGroups, setSelectedGroup} from '../../redux/memberReducer';
 import axios from 'axios';
 import Header from '../Header/Header';
+import GroupOptions from '../GroupOptions/GroupOptions';
 import Message from '../Message/Message';
 import './Groups.scss';
 
@@ -11,7 +12,6 @@ class Groups extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selectedGroup: 0,
             messages: [],
             createGroupView: false,
             groupName: '',
@@ -135,10 +135,8 @@ class Groups extends Component {
                     <button onClick={this.createGroup} className='group-button'>Create</button>
                     <button onClick={this.toggleCreateView} className='group-button'>Cancel</button>
                 </section>)}
+                <GroupOptions groups={this.props.groups} selectedGroup={this.props.selectedGroup}/>
                 <Message 
-                    member={this.props.member}
-                    groups={this.props.groups} 
-                    selectedGroup={this.props.selectedGroup}
                     messages={this.state.messages}
                     sendMessageFn={this.sendMessage}/>
             </div>
@@ -146,8 +144,6 @@ class Groups extends Component {
     }
 };
 
-const mapStateToProps = (reduxState) => {
-    return reduxState
-}
+const mapStateToProps = reduxState => reduxState;
 
 export default connect(mapStateToProps, {getGroups, setSelectedGroup})(Groups);
