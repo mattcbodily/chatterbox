@@ -8,18 +8,23 @@ const Column = (props) => {
 
     useEffect(() => {
         if(props.column.column_id){
-            //axios request for tasks by column
+            axios.get(`/api/tasks/${props.column.column_id}`)
+            .then(res => setTasks(res.data))
+            .catch(err => console.log(err))
         }
     }, [props.column])
 
+    console.log(tasks)
+
     return (
         <div>
-            <Droppable droppableId={this.props.column.column_id}>
+            <Droppable droppableId={toString(props.column.column_id)}>
                 {provided => (
                     <div
-                        innerRef={provided.innerRef} 
+                        ref={provided.innerRef} 
                         {...provided.droppableProps}
                     >
+                        {props.column.column_name}
                         {tasks.map((taskData, i) => <Tasks key={taskData.task_id} task={taskData} index={i}/> )}
                         {provided.placeholder}
                     </div>

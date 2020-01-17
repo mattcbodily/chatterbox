@@ -3,14 +3,14 @@ import {Draggable} from 'react-beautiful-dnd';
 
 const Tasks = (props) => {
     return (
-        <Draggable draggableId={this.props.task.task_id}>
+        <Draggable draggableId={toString(props.task.task_id)} index={props.index}>
             {provided => (
                 <div
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    innerRef={provided.innerRef}
+                    ref={provided.innerRef}
                 >
-                    task content goes here
+                    {props.task.task}
                 </div>
             )}
         </Draggable>

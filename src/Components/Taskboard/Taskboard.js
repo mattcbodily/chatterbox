@@ -1,16 +1,20 @@
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import {DragDropContext} from 'react-beautiful-dnd';
 import axios from 'axios';
 import Columns from './Columns';
 import './Taskboard.scss';
 
-export default (props) => {
+const Taskboard = (props) => {
     const [columns, setColumns] = useState([])
     
     useEffect(() => {
-    //axios.get(`/api/columns`) Make group_id available to taskboard
+        axios.get(`/api/columns/${props.selectedGroup}`)
+        .then(res => setColumns(res.data))
+        .catch(err => console.log(err));
     }, [])
 
+    console.log(columns)
     const onDragEnd = result => {
         //axios request to update the order of the table
     }
@@ -21,3 +25,7 @@ export default (props) => {
         </DragDropContext>
     )
 }
+
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(Taskboard);

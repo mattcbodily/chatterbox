@@ -3,8 +3,8 @@ module.exports = {
     getColumns: (req, res) => {
         const {id} = req.params,
               db = req.app.get('db');
-
-        db.taskboard.get_columns({id})
+              
+        db.taskboard.get_columns({id: +id})
         .then(columns => res.status(200).send(columns))
         .catch(err => res.status(500).send(err))
     },
