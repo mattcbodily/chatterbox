@@ -15,5 +15,16 @@ module.exports = {
         db.taskboard.get_tasks({id})
         .then(tasks => res.status(200).send(tasks))
         .catch(err => res.status(500).send(err))
+    },
+    addColumn: (req, res) => {
+        const {id, order, name} = req.body,
+              db = req.app.get('db');
+
+        db.taskboard.add_column({id, order, name})
+        .then(columns => res.sendStatus(200))
+        .catch(err => res.status(500).send(err));
+    },
+    addTask: (req, res) => {
+
     }
 }

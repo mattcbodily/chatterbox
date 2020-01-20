@@ -37,6 +37,7 @@ app.post('/api/group', groupCtrl.createGroup);
 //task endpoints
 app.get('/api/columns/:id', taskCtrl.getColumns);
 app.get('/api/tasks/:id', taskCtrl.getTasks);
+app.post('/api/column', taskCtrl.addColumn);
 
 
 //sockets
