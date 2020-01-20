@@ -20,7 +20,7 @@ class Taskboard extends Component {
     }
 
     onDragEnd = result => {
-        //axios request to update the order of the table
+        console.log('hit', result)
     }
 
     render(){
