@@ -143,7 +143,7 @@ class Groups extends Component {
                     <button onClick={this.createGroup} className='group-button'>Create</button>
                     <button onClick={this.toggleCreateView} className='group-button'>Cancel</button>
                 </section>)}
-                <GroupOptions groups={this.props.groups} selectedGroup={this.props.selectedGroup} toggleFn={this.toggleTaskboardView}/>
+                <GroupOptions groups={this.props.groups} selectedGroup={this.props.selectedGroup} toggleFn={this.toggleTaskboardView} taskboardView={this.state.taskboardView}/>
                 {!this.state.taskboardView
                 ? <Message 
                     messages={this.state.messages}

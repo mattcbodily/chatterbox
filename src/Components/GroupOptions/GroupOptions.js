@@ -8,8 +8,10 @@ export default (props) => {
         <div className='group-options'>
             {groupInfo 
             ?(<section>
-                <span className='group-options-name'>{groupInfo.group_name}</span> 
-                <button className='group-options-button' onClick={props.toggleFn}>Task Board</button>
+                <span className='group-options-name'>{groupInfo.group_name}</span>
+                {!props.taskboardView 
+                ? <button className='group-options-button' onClick={props.toggleFn}>Task Board</button>
+                : <button className='group-options-button' onClick={props.toggleFn}>Group Chat</button>}
               </section>) 
             : null}
         </div>

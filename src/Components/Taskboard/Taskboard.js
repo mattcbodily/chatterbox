@@ -25,9 +25,17 @@ class Taskboard extends Component {
 
     render(){
         return (
-            <DragDropContext onDragEnd={this.onDragEnd}>
-                {this.state.columns.map(columnData => <Columns key={columnData.column_id} column={columnData}/>)}
-            </DragDropContext>
+            <div className='taskboard'>
+                <DragDropContext onDragEnd={this.onDragEnd}>
+                    <div className='column-flex'>
+                        <section className='add-column-container'>
+                            <div className='add-column-button'>+</div>
+                            <p>Add Column</p>
+                        </section>
+                        {this.state.columns.map(columnData => <Columns key={columnData.column_id} column={columnData}/>)}
+                    </div>
+                </DragDropContext>
+            </div>
         )   
     }
 }

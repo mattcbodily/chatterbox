@@ -20,21 +20,19 @@ class Columns extends Component {
 
     render(){
         return (
-            <div>
-                <Droppable droppableId={`Column-${this.props.column.column_id}`}>
-                    {provided => (
-                        <div
-                            ref={provided.innerRef} 
-                            {...provided.droppableProps}
-                            className='task-columns'
-                        >
-                            {this.props.column.column_name}
-                            {this.state.tasks.map((taskData, i) => <Tasks key={taskData.task_id} task={taskData} index={i}/> )}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </div>
+            <Droppable droppableId={`Column-${this.props.column.column_id}`}>
+                {provided => (
+                    <div
+                        ref={provided.innerRef} 
+                        {...provided.droppableProps}
+                        className='task-columns'
+                    >
+                        <p id='column-name'>{this.props.column.column_name}</p>
+                        {this.state.tasks.map((taskData, i) => <Tasks key={taskData.task_id} task={taskData} index={i}/> )}
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
         )
     }
 }

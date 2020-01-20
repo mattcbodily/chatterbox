@@ -7,11 +7,12 @@ class Tasks extends Component {
             <Draggable draggableId={`Task-${this.props.task.task_id}`} index={this.props.index}>
                 {provided => (
                     <div
+                        className='task'
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                     >
-                        {this.props.task.task}
+                        <p>{this.props.task.task}</p>
                     </div>
                 )}
             </Draggable>
