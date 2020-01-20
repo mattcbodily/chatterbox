@@ -25,6 +25,11 @@ module.exports = {
         .catch(err => res.status(500).send(err));
     },
     addTask: (req, res) => {
+        const {id, order, task, priority} = req.body,
+              db = req.app.get('db');
 
+        db.taskboard.add_task({id, order, task, priority})
+        .then(tasks => res.sendStatus(200))
+        .catch(err => res.status(500).send(err));
     }
 }

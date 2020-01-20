@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import GroupOptions from '../GroupOptions/GroupOptions';
 import './Message.scss';
 
 const Message = (props) => {

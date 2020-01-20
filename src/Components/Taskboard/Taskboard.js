@@ -34,15 +34,16 @@ class Taskboard extends Component {
     addColumn = () => {
         const column = {
             id: this.props.selectedGroup,
-            order: this.state.columns[this.state.columns.length - 1].column_order + 1,
+            order: this.state.columns.length ? this.state.columns[this.state.columns.length - 1].column_order + 1 : 1,
             name: this.state.columnName
         }
 
         axios.post('/api/column', column)
-        .then(res => this.getColumns())
+        .then(res => {
+            this.getColumns()
+            this.handleAddView()
+        })
         .catch(err => console.log(err))
-
-        this.handleAddView()
     }
 
     onDragEnd = result => {
