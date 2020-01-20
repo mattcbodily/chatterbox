@@ -21,7 +21,7 @@ class Columns extends Component {
     render(){
         return (
             <div>
-                <Droppable droppableId={toString(this.props.column.column_id)}>
+                <Droppable droppableId={`Column-${this.props.column.column_id}`}>
                     {provided => (
                         <div
                             ref={provided.innerRef} 

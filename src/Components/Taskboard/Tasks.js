@@ -4,7 +4,7 @@ import {Draggable} from 'react-beautiful-dnd';
 class Tasks extends Component {
     render(){
         return (
-            <Draggable draggableId={toString(this.props.task.task_id)} index={this.props.index}>
+            <Draggable draggableId={`Task-${this.props.task.task_id}`} index={this.props.index}>
                 {provided => (
                     <div
                         ref={provided.innerRef}
