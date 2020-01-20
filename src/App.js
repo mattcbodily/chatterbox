@@ -3,7 +3,7 @@ import routes from './routes';
 import './reset.scss';
 import './App.scss';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       {routes}

@@ -6,6 +6,7 @@ import axios from 'axios';
 import Header from '../Header/Header';
 import GroupOptions from '../GroupOptions/GroupOptions';
 import Message from '../Message/Message';
+import Taskboard from '../Taskboard/Taskboard';
 import './Groups.scss';
 
 class Groups extends Component {
@@ -17,7 +18,8 @@ class Groups extends Component {
             groupName: '',
             groupDescription: '',
             privateGroup: false,
-            chatJoined: false
+            chatJoined: false,
+            taskboardView: false
         }
     }
 
@@ -93,6 +95,12 @@ class Groups extends Component {
         })
     }
 
+    toggleTaskboardView = () => {
+        this.setState({
+            taskboardView: !this.state.taskboardView
+        })
+    }
+
     handleInputs = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -135,10 +143,12 @@ class Groups extends Component {
                     <button onClick={this.createGroup} className='group-button'>Create</button>
                     <button onClick={this.toggleCreateView} className='group-button'>Cancel</button>
                 </section>)}
-                <GroupOptions groups={this.props.groups} selectedGroup={this.props.selectedGroup}/>
-                <Message 
+                <GroupOptions groups={this.props.groups} selectedGroup={this.props.selectedGroup} toggleFn={this.toggleTaskboardView}/>
+                {!this.state.taskboardView
+                ? <Message 
                     messages={this.state.messages}
                     sendMessageFn={this.sendMessage}/>
+                : <Taskboard />}
             </div>
         )
     }
